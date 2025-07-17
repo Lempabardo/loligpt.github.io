@@ -1,0 +1,24 @@
+name: Run Chat Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-chat:
+    runs-on: ubuntu-latest
+    env:
+      HF_API_TOKEN: ${{ secrets.HF_API_TOKEN }}  # Передача секрета в окружение
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run script
+        run: |
+          python chat.py
