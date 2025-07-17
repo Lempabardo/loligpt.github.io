@@ -1,7 +1,11 @@
+import os
 import requests
 
-# Ваш API-токен
-API_TOKEN = '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'
+# Получаем токен из переменной окружения
+API_TOKEN = os.getenv('HF_API_TOKEN')
+
+if not API_TOKEN:
+    raise ValueError("Пожалуйста, установите переменную окружения HF_API_TOKEN")
 
 headers = {
     "Authorization": f"Bearer {API_TOKEN}"
@@ -11,8 +15,8 @@ def get_response(prompt):
     json_data = {
         "inputs": prompt,
         "parameters": {
-            "max_new_tokens": 150,   # Максимальное количество новых токенов в ответе
-            "temperature": 0.7,      # Размытие генерации (чем выше — тем более разнообразный ответ)
+            "max_new_tokens": 150,
+            "temperature": 0.7,
             "top_p": 0.9,
             "top_k": 50,
             "do_sample": True
@@ -25,15 +29,12 @@ def get_response(prompt):
     )
     if response.status_code == 200:
         result = response.json()
-        # Ответ модели — первый элемент в списке
+        # В зависимости от модели структура ответа может отличаться
         return result[0]['generated_text']
     else:
         return f"Ошибка: {response.status_code} - {response.text}"
 
-# Цикл для постоянного ввода текста
-while True:
-    prompt = input("Введите ваш текст (или 'выход' для завершения): ")
-    if prompt.lower() == 'выход':
-        break
-    answer = get_response(prompt)
-    print("Ответ:\n", answer)
+# Основной цикл или вызов функции
+if __name__ == "__main__":
+    prompt = input("Введите ваш текст: ")
+    print(get_response(prompt))
