@@ -1,0 +1,75 @@
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #e0ccf7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Контейнер */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок */
+.title {
+    text-align: center;
+    font-size: 2em;
+    color: #a77ab4; /* пастельно-фиолетовый */
+    margin-bottom: 10px;
+}
+
+/* Чат-бокс */
+.chat-box {
+    flex-grow: 1;
+    background-color: #fff0f5; /* светлый розовый фон */
+    padding: 10px;
+    border-radius: 15px;
+    overflow-y: auto;
+    height: 300px;
+}
+
+/* Сообщения */
+.message {
+    margin-bottom: 10px;
+}
+.message.user {
+    text-align: right;
+}
+.message.bot {
+    text-align: left;
+}
+
+/* Ввод и кнопка */
+.input-area {
+    display: flex;
+    margin-top: 10px;
+}
+#user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+#send-btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #a77ab4; /* пастельно-фиолетовый */
+    color: white;
+     cursor:pointer; 
+     transition:.3s all; 
+}
+#send-btn:hover {background:#8e6fa4;}
